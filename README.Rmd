@@ -19,19 +19,27 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of ControleCIs is to ...
+O objetivo do app ControleCIs é acrescentar à planilha de controle existente, a nova demanda recebida, sinalizando duplicidades, quando houver.
 
-## Installation
+Resumo: Planilha de controle atualizada e mensagem, caso seja necessário, sinalizando duplicidade de solicitação de elementar (verificar se na planilha de controle o elementar já havia sido solicitado e retornar o número da CI onde ele foi solicitado – coluna A: Origem). Caso a coluna de elementar esteja vazia, fazer essa verificação através do Item externo e, em casos em que ambos estejam vazias, sinalizar que a planilha não tem o elementar e o externo.
 
-You can install the development version of ControleCIs like so:
+
+## Instalação
+
+Você pode instalar a versão de desenvolvimento do ControleCIs assim:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+devtools::install_github('wfaquieri/ControleCIs')
 ```
 
-## Example
+## Deploy (Shiny apps)
 
-This is a basic example which shows you how to solve a common problem:
+A ferramenta também pode ser acessada diretamente: <https://fgv-ibre.shinyapps.io/ControleCIs/>
+
+
+## Demonstração
+
+![](demo.gif)
 
 ```{r example}
 library(ControleCIs)
