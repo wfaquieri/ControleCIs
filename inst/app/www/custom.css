@@ -1,0 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro');
+
+.ms-Fabric {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    color: #3b3a39;
+    font-family: Roboto,'Segoe UI Web (West European)','Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+    font-size: 12px;
+}
