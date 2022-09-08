@@ -29,7 +29,8 @@ A ferramenta também pode ser acessada diretamente: <https://fgv-ibre.shinyapps.
 ## Demonstração
 
 ![](demo.gif)
-# DESCRIÇÃO
+
+## DESCRIÇÃO
 
 Package: ControleCIs
 
@@ -40,7 +41,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("winicius", "faquieri", , "winicius.faquieri@fgv.com.br", role = c("aut", "cre"))
     
-Description: o app ControleCIs PERMITE acrescentar à planilha de controle existente, a nova demanda recebida, sinalizando duplicidades, quando houver.
+Description: o app ControleCIs permite acrescentar à planilha de controle existente, a nova demanda recebida, sinalizando duplicidades, quando houver.
 
 License: MIT + file LICENSE
 
