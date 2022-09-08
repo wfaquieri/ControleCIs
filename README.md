@@ -34,7 +34,9 @@ A ferramenta também pode ser acessada diretamente:
 
 ## Demonstração
 
-![](demo.gif) \# DESCRIÇÃO
+![](demo.gif) 
+
+## DESCRIÇÃO
 
 Package: ControleCIs
 
