@@ -2,17 +2,6 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
 # ControleCIs
 
 <!-- badges: start -->
@@ -40,24 +29,41 @@ A ferramenta também pode ser acessada diretamente: <https://fgv-ibre.shinyapps.
 ## Demonstração
 
 ![](demo.gif)
+# DESCRIÇÃO
 
-```{r example}
-library(ControleCIs)
-## basic example code
-```
+Package: ControleCIs
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Title: App de controle de CIs.
 
-```{r cars}
-summary(cars)
-```
+Version: 0.0.0.9000
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
+Authors@R: 
+    person("winicius", "faquieri", , "winicius.faquieri@fgv.com.br", role = c("aut", "cre"))
+    
+Description: o app ControleCIs PERMITE acrescentar à planilha de controle existente, a nova demanda recebida, sinalizando duplicidades, quando houver.
 
-You can also embed plots, for example:
+License: MIT + file LICENSE
 
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
+Depends: 
+    R (>= 2.10)
+Imports: 
+    bs4Dash,
+    bslib,
+    config (>= 0.3.1),
+    dplyr,
+    DT,
+    golem (>= 0.3.3),
+    janitor,
+    purrr,
+    readxl,
+    shiny (>= 1.7.2),
+    shinyWidgets,
+    stringr
+    
+Config/testthat/edition: 3
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+Encoding: UTF-8
+
+LazyData: true
+
+RoxygenNote: 7.2.1
