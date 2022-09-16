@@ -11,7 +11,7 @@ O objetivo do app ControleCIs é acrescentar à planilha de controle
 existente, a nova demanda recebida, sinalizando duplicidades, quando
 houver.
 
-Resumo: Planilha de controle atualizada e mensagem, caso seja
+Resumo: Atualiza a planilha de controle e gera uma mensagem, caso seja
 necessário, sinalizando duplicidade de solicitação de elementar
 (verificar se na planilha de controle o elementar já havia sido
 solicitado e retornar o número da CI onde ele foi solicitado – coluna A:
@@ -29,12 +29,12 @@ devtools::install_github('wfaquieri/ControleCIs')
 
 ## Deploy (Shiny apps)
 
-A ferramenta também pode ser acessada diretamente:
+A ferramenta também pode ser acessada diretamente através do:
 <https://fgv-ibre.shinyapps.io/ControleCIs/>
 
 ## Demonstração
 
-![](demo.gif) 
+![](demo.gif)
 
 ## DESCRIÇÃO
 
@@ -47,7 +47,7 @@ Version: 0.0.0.9000
 <Authors@R>: person(“winicius”, “faquieri”, ,
 “<winicius.faquieri@fgv.com.br>”, role = c(“aut”, “cre”))
 
-Description: o app ControleCIs PERMITE acrescentar à planilha de
+Description: o app ControleCIs permite acrescentar à planilha de
 controle existente, a nova demanda recebida, sinalizando duplicidades,
 quando houver.
 

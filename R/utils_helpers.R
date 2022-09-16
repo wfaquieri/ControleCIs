@@ -18,18 +18,10 @@ create_table <- function(df) {
       # initComplete = DT::JS('function(setting, json) { alert("Bem-vind@ ao app ControleCIs!"); }'),
       scrollX = TRUE,
       autoWidth = TRUE,
-      dom = 'Bfrtip',
+      dom = 'frtip',
       class = "display compact nowrap",
       searchHighlight = TRUE,
-      language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json'),
-      buttons = list(
-        list(
-          extend = 'excel',
-          title = NULL,
-          footer = FALSE,
-          text = 'Download <span class="fa-solid fa-download" data-toggle="tooltip" title="Exportar para Excel"/>'
-        )
-      )
+      language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json')
     )
   )
 
