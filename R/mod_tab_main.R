@@ -31,10 +31,13 @@ mod_tab_main_ui <- function(id) {
         actionButton(ns("goButton"), "Atualizar", icon = icon('fa-regular fa-pen-to-square')),
         title = "Atualiza a planilha de controle existente com a nova demanda recebida.",
         placement = "top"
-      ),
-      downloadButton(ns("download1"), "Download")
-    )
+      )
+      # downloadButton(ns("download1"), "Download")
+    ),
+    bs4Dash::column(width = 3, offset = 5, downloadButton(ns("download1"), "Download"))
   ),
+
+
 
   # TABELA DE CONTROLE CIS
   fluidRow(column(
@@ -63,7 +66,10 @@ mod_tab_main_server <- function(id) {
 
         dplyr::lst(
           # Planilha de controle de solicitações
-          df_contr = vroom::vroom(control_file, delim = ";"),
+          df_contr = read.csv2(control_file,
+                               fileEncoding = "latin1",
+                               colClasses = 'character'
+          ),
 
           # Planilha da demanda (extraída do sistema de Cis)
           df_cis =
@@ -71,18 +77,8 @@ mod_tab_main_server <- function(id) {
               1:length(ci_files),
               ~ readxl::read_xlsx(
                 ci_files[.x],
-                col_types = c("text", "text", "text",
-                              "text", "text", "text", "text", "text",
-                              "text", "text", "text", "text", "numeric",
-                              "numeric", "numeric", "numeric",
-                              "numeric", "numeric", "numeric",
-                              "numeric", "numeric", "numeric",
-                              "numeric", "numeric", "numeric",
-                              "numeric", "numeric", "numeric",
-                              "numeric", "numeric", "numeric",
-                              "numeric", "numeric", "numeric",
-                              "numeric", "numeric", "text", "text",
-                              "text", "text", "numeric", "text")
+                range = readxl::cell_cols("A:AP"),
+                col_types = "text"
               )
             )
         )
@@ -103,12 +99,10 @@ mod_tab_main_server <- function(id) {
         # TRANSFORM AND BIND! -----------------------------------------------------
 
         controle = controle |>
-          dplyr::mutate(elementar = as.character(elementar))
-        # data_da_solicitacao = data_da_solicitacao |> as.Date(),
-        # data_prazo = data_prazo |> as.Date(),
-        # data_da_ultima_parcial = data_da_ultima_parcial |> as.Date(),
-        # data_da_finalizacao = data_da_finalizacao |> as.Date()
-
+          dplyr::mutate(
+            quantidade_de_itens = quantidade_de_itens |> as.double(),
+            quantidade_total_de_itens_por_uf =  quantidade_total_de_itens_por_uf |> as.double()
+          )
 
         col_names = names(controle)
 
@@ -116,23 +110,22 @@ mod_tab_main_server <- function(id) {
           dplyr::select(1:12, 39, 40) |>
           dplyr::mutate(
             data = data |> stringr::str_sub(1, 10),
-            ano = data |> stringr::str_sub(7, 10),
-            mes = data |> stringr::str_sub(4, 5),
-            dia = data |> stringr::str_sub(1, 1),
-            data = paste(ano, mes, dia, sep = "-") |> as.Date(),
+            data = paste(stringr::str_sub(data, 7, 10),
+                         stringr::str_sub(data, 4, 5),
+                         stringr::str_sub(data, 1, 1),
+                         sep = "-"),
             cod_ci = paste0("CI ", cod_ci),
-            cod_ci_ext = cod_ci_ext |> stringr::str_replace("-", " "),
+            cod_ci_ext = cod_ci_ext |> stringr::str_replace("-", ""),
             quantidade_de_itens = dplyr::n_distinct(cod_ext_insumo) |> as.double(),
             quantidade_total_de_itens_por_uf = dplyr::n() |> as.double(),
-            data_prazo = as.Date(""),
-            tipo_do_pedido = " ",
-            responsavel_pela_solicitacao = " ",
-            data_da_ultima_parcial = as.Date(""),
-            data_da_finalizacao = as.Date(""),
-            observacoes = " ",
-            duplicidades = NA
-          ) |>
-          dplyr::select(-ano, -mes, -dia) |>
+            data_prazo = "",
+            tipo_do_pedido = "",
+            responsavel_pela_solicitacao = "",
+            data_da_ultima_parcial = "",
+            data_da_finalizacao = "",
+            observacoes = "",
+            duplicidades = ""
+          )  |>
           dplyr::select(1:12, 14, 17:18, 13, 15:16, 19:23) |>
           purrr::set_names(col_names)
 
@@ -149,6 +142,8 @@ mod_tab_main_server <- function(id) {
 
         # ATUALIZAR PLAN CONTROLE - BIND
         novo_controle = dplyr::bind_rows(controle, cis2)
+
+        # A nova planilha de controle possui
 
         # DOWNLOAD BUTTON
         data = format(Sys.time(), "%d%m%Y")
